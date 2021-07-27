@@ -246,6 +246,9 @@ class ImageLoader:
         """
         Load from a given path.
         """
+        # add
+        if os.path.isfile(path) == False:
+            return None
         mode = self.opt.get('image_mode', 'raw')
         if mode is None or mode == 'no_image_model':
             # don't need to load images

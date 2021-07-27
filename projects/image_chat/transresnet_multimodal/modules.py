@@ -98,7 +98,7 @@ class TransresnetMultimodalModel(TransresnetModel):
         return parser
 
     def __init__(self, opt, personalities_list, dictionary):
-        super().__init__(opt, personalities_list, dictionary)
+        super().__init__(opt, personalities_list, dictionary)   # dictionary: vocabulary
         self.hidden_dim = self.opt["hidden_dim"]
         self.share_encoder = opt.get("share_encoder")
         nlayers_mm = (
@@ -124,10 +124,10 @@ class TransresnetMultimodalModel(TransresnetModel):
         self._build_multimodal_encoder(nlayers_mm)
 
         # Label Encoder
-        self.label_encoder = self.text_encoder
+        self.label_encoder = self.text_encoder  # -> agents.transformer.modules.TransformerEncoder
 
         # Context encoder
-        self._build_context_encoder()
+        self._build_context_encoder()   # 同様
 
     def _build_multimodal_encoder(self, n_layers_mm):
         """

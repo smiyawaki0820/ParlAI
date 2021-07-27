@@ -290,6 +290,8 @@ class TransresnetModel(nn.Module):
         """
         img_encoded = None
         if image_features is not None:
+            if self.use_cuda:
+                image_features = [i.cuda() for i in image_features]
             stacked = torch.stack(image_features)
             if self.use_cuda:
                 stacked = stacked.cuda()

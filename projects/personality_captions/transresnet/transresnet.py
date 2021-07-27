@@ -355,6 +355,9 @@ class TransresnetAgent(Agent):
                     tmp_image_feats[i] = im[0, :, 0, 0]
             except TypeError:  # No Image Feats Given
                 tmp_image_feats[i] = self.blank_image_features
+            except AttributeError:  # No Image Feats Given
+                tmp_image_feats[i] = self.blank_image_features
+
         image_feats = []
         for img in tmp_image_feats:
             image_feats.append(img.detach())
